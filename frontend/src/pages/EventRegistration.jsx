@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api/axios';
 import { Calendar, MapPin, Clock, CheckCircle, Users, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 
@@ -19,7 +19,7 @@ const EventRegistration = () => {
 
     const fetchEvent = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/events/${id}`);
+            const { data } = await API.get(`/events/${id}`);
             setEvent(data);
         } catch (err) {
             setError('Event not found.');
@@ -32,7 +32,7 @@ const EventRegistration = () => {
         e.preventDefault();
         setSubmitting(true);
         try {
-            const { data } = await axios.post(`http://localhost:5000/api/registrations/${id}`, formData);
+            const { data } = await API.post(`/registrations/${id}`, formData);
             if (data.status === 'Approved') navigate(`/ticket/${data.ticketId}`);
             else { setPending(true); setSuccess(true); }
         } catch (err) {

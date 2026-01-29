@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api/axios';
 import { Calendar, MapPin, User, Download, QrCode } from 'lucide-react';
 import { format } from 'date-fns';
 
@@ -14,7 +14,7 @@ const Ticket = () => {
 
     const fetchTicket = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/registrations/ticket/${ticketId}`);
+            const { data } = await API.get(`/registrations/ticket/${ticketId}`);
             setTicket(data);
         } catch (err) {
             setError('Invalid Ticket ID');
