@@ -41,6 +41,7 @@ npm install
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/event-app
 JWT_SECRET=your_jwt_secret
+FRONTEND_URL=http://localhost:5173
 ```
 - Start the server:
 ```bash
